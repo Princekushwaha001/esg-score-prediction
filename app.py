@@ -8,6 +8,7 @@ import joblib
 import numpy as np
 from pathlib import Path
 import json
+import os
 
 app = Flask(__name__)
 CORS(app)
@@ -15,6 +16,12 @@ CORS(app)
 # Load models on startup
 MODELS = {}
 
+from flask import send_from_directory
+
+# Add this route to serve static files
+@app.route('/static/<path:path>')
+def serve_static(path):
+    return send_from_directory('static', path)
 
 def load_models():
     """Load all trained models."""
