@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESG Score Prediction | ML-Powered Sustainability Assessment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon">🌱</span>
+                    <h1>ESG Score Predictor</h1>
+                </div>
+                <p class="tagline">AI-Powered Sustainability Assessment</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero">
+                <h2>Predict Your Company's ESG Score</h2>
+                <p>Enter your company's sustainability metrics to get an instant ESG score prediction using machine learning</p>
+            </section>
+
+            <!-- Input Form -->
+            <section class="prediction-section">
+                <div class="card">
+                    <h3 class="card-title">📊 Company Metrics</h3>
+
+                    <form id="predictionForm">
+                        <!-- Model Selection -->
+                        <div class="form-group">
+                            <label for="model">ML Model</label>
+                            <select id="model" name="model" class="form-control">
+                                <option value="random_forest" selected>Random Forest (Recommended)</option>
+                                <option value="linear_regression">Linear Regression</option>
+                                <option value="xgboost">XGBoost</option>
+                            </select>
+                            <small class="form-hint">Random Forest provides the most accurate predictions</small>
+                        </div>
+
+                        <!-- Environmental Metrics -->
+                        <div class="metrics-group">
+                            <h4>🌍 Environmental</h4>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="co2">CO₂ Emissions (tons/year)</label>
+                                    <input type="number" id="co2" name="co2" class="form-control"
+                                           placeholder="e.g., 50000" min="0" step="1" required>
+                                    <small class="form-hint">Annual carbon dioxide emissions</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="energy">Energy Use (MWh/year)</label>
+                                    <input type="number" id="energy" name="energy" class="form-control"
+                                           placeholder="e.g., 30000" min="0" step="1" required>
+                                    <small class="form-hint">Total annual energy consumption</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Social & Governance Metrics -->
+                        <div class="metrics-group">
+                            <h4>👥 Social & Governance</h4>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="diversity">Diversity Index (0-100)</label>
+                                    <input type="number" id="diversity" name="diversity" class="form-control"
+                                           placeholder="e.g., 65" min="0" max="100" required>
+                                    <small class="form-hint">Workforce diversity score</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="governance">Governance Rating (1-10)</label>
+                                    <input type="number" id="governance" name="governance" class="form-control"
+                                           placeholder="e.g., 7" min="1" max="10" required>
+                                    <small class="form-hint">Management quality assessment</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary" id="predictBtn">
+                                <span class="btn-text">Predict ESG Score</span>
+                                <span class="btn-icon">→</span>
+                            </button>
+                            <button type="button" class="btn btn-secondary" id="loadExampleBtn">
+                                Load Example
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Results Section -->
+                <div class="card" id="resultsCard" style="display: none;">
+                    <h3 class="card-title">📈 Prediction Results</h3>
+
+                    <!-- ESG Score Display -->
+                    <div class="score-display">
+                        <div class="score-circle">
+                            <span class="score-emoji" id="scoreEmoji">🟢</span>
+                            <div class="score-value" id="scoreValue">--</div>
+                            <div class="score-label">ESG Score</div>
+                        </div>
+                        <div class="score-details">
+                            <div class="rating-badge" id="ratingBadge">
+                                <span id="ratingText">--</span>
+                            </div>
+                            <div class="rating-stars" id="ratingStars">
+                                ⭐⭐⭐⭐⭐
+                            </div>
+                            <p class="rating-description" id="ratingDescription">--</p>
+                        </div>
+                    </div>
+
+                    <!-- Component Scores -->
+                    <div class="components">
+                        <h4>Score Breakdown</h4>
+                        <div class="component-bars">
+                            <div class="component-item">
+                                <div class="component-header">
+                                    <span class="component-label">🌍 Environmental</span>
+                                    <span class="component-value" id="envScore">--</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="envProgress" style="width: 0%;"></div>
+                                </div>
+                            </div>
+
+                            <div class="component-item">
+                                <div class="component-header">
+                                    <span class="component-label">👥 Social</span>
+                                    <span class="component-value" id="socialScore">--</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="socialProgress" style="width: 0%;"></div>
+                                </div>
+                            </div>
+
+                            <div class="component-item">
+                                <div class="component-header">
+                                    <span class="component-label">⚖️ Governance</span>
+                                    <span class="component-value" id="govScore">--</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="govProgress" style="width: 0%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Input Summary -->
+                    <div class="input-summary">
+                        <h4>Input Values</h4>
+                        <div class="summary-grid">
+                            <div class="summary-item">
+                                <span class="summary-label">CO₂ Emissions:</span>
+                                <span class="summary-value" id="summaryCO2">--</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Energy Use:</span>
+                                <span class="summary-value" id="summaryEnergy">--</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Diversity Index:</span>
+                                <span class="summary-value" id="summaryDiversity">--</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Governance:</span>
+                                <span class="summary-value" id="summaryGovernance">--</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Info Section -->
+            <section class="info-section">
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-icon">📊</div>
+                        <h3>How It Works</h3>
+                        <p>Our machine learning models analyze your company's environmental, social, and governance metrics to predict an ESG score from 0-100.</p>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">🎯</div>
+                        <h3>Score Ranges</h3>
+                        <ul class="score-ranges">
+                            <li><span class="range-badge excellent">80-100</span> Excellent</li>
+                            <li><span class="range-badge good">60-79</span> Good</li>
+                            <li><span class="range-badge fair">40-59</span> Fair</li>
+                            <li><span class="range-badge poor">20-39</span> Needs Improvement</li>
+                            <li><span class="range-badge critical">0-19</span> Poor</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">🤖</div>
+                        <h3>ML Models</h3>
+                        <p>Choose from three trained models: Random Forest (recommended for accuracy), Linear Regression, or XGBoost.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 ESG Score Prediction System | Powered by Machine Learning</p>
+        </div>
+    </footer>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+        <p>Analyzing metrics...</p>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
