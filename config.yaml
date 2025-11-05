@@ -34,3 +34,15 @@ output:
   models_dir: 'outputs/models'
   metrics_dir: 'outputs/metrics'
   visualizations_dir: 'outputs/visualizations'
+
+
+services:
+  - type: web
+    name: esg-score-prediction
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.9.0
+    plan: free

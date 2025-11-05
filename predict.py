@@ -8,6 +8,7 @@ import numpy as np
 from pathlib import Path
 
 
+
 def load_model(model_name: str):
     """Load trained model from disk."""
     model_path = f"outputs/models/{model_name}_model.pkl"

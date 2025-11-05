@@ -38,7 +38,10 @@ def load_models():
         except Exception as e:
             print(f"⚠ Error loading {name} model: {str(e)}")
 
-
+@app.route('/')
+def index():
+    """Render the main page."""
+    return render_template('index.html')
 
 @app.route('/api/models', methods=['GET'])
 def get_models():
@@ -186,20 +189,22 @@ def get_examples():
     return jsonify(examples)
 
 
-if __name__ == '__main__':
-    print("\n" + "=" * 60)
-    print("ESG SCORE PREDICTION WEB APP")
-    print("=" * 60)
-    print("\nLoading models...")
-    load_models()
+# Load models when the app starts
+print("\n" + "=" * 60)
+print("ESG SCORE PREDICTION WEB APP")
+print("=" * 60)
+print("\nLoading models...")
+load_models()
 
-    if not MODELS:
-        print("\n⚠ ERROR: No models found!")
-        print("Please run: python main.py --all")
-        print("=" * 60 + "\n")
-    else:
-        print(f"\n✓ Loaded {len(MODELS)} models")
-        print("\nStarting server...")
-        print("Open your browser and visit: http://127.0.0.1:5000")
-        print("=" * 60 + "\n")
-        app.run(debug=True, host='0.0.0.0', port=5000)
+if not MODELS:
+    print("\n⚠ ERROR: No models were loaded!")
+    print("Please check if the model files exist in the outputs/models/ directory.")
+    print("You may need to run: python train.py")
+else:
+    print(f"\n✓ Successfully loaded {len(MODELS)} models: {list(MODELS.keys())}")
+
+if __name__ == '__main__':
+    print("\nStarting development server...")
+    print("Open your browser and visit: http://127.0.0.1:5000")
+    print("=" * 60 + "\n")
+    app.run(debug=True, host='0.0.0.0', port=5000)
