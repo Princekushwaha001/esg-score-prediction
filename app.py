@@ -17,7 +17,6 @@ CORS(app)
 MODELS = {}
 
 from flask import send_from_directory
-
 # Add this route to serve static files
 @app.route('/static/<path:path>')
 def serve_static(path):
@@ -26,19 +25,19 @@ def serve_static(path):
 def load_models():
     """Load all trained models."""
     model_names = ['linear_regression', 'random_forest', 'xgboost']
+    base_dir = Path(__file__).parent
+
     for name in model_names:
-        model_path = f"outputs/models/{name}_model.pkl"
-        if Path(model_path).exists():
-            MODELS[name] = joblib.load(model_path)
-            print(f"✓ Loaded {name} model")
-        else:
-            print(f"⚠ Warning: {name} model not found at {model_path}")
+        model_path = base_dir / 'outputs' / 'models' / f"{name}_model.pkl"
+        try:
+            if model_path.exists():
+                MODELS[name] = joblib.load(str(model_path))
+                print(f"✓ Successfully loaded {name} model from {model_path}")
+            else:
+                print(f"⚠ Warning: {name} model not found at {model_path}")
+        except Exception as e:
+            print(f"⚠ Error loading {name} model: {str(e)}")
 
-
-@app.route('/')
-def index():
-    """Render the main page."""
-    return render_template('index.html')
 
 
 @app.route('/api/models', methods=['GET'])
