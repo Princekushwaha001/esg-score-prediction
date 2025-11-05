@@ -90,33 +90,28 @@ async function handleSubmit(e) {
     // Show loading
     showLoading();
 
-    try {
-//        const response = await fetch(`${API_BASE}/predict`, {
-//            method: 'POST',
-//            headers: {
-//                'Content-Type': 'application/json'
-//            },
-//            body: JSON.stringify(data)
-//        });
 
-         // Example fetch call
-        fetch(`${API_BASE}/predict`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
-        })
+    // Replace the entire try-catch block with this:
+
+
+    try {
+        const response = await fetch(`${API_BASE}/predict`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+
+        if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
 
         const result = await response.json();
-
-        if (result.success) {
-            displayResults(result);
-        } else {
-            showError(result.error || 'Prediction failed');
-        }
+        displayResults(result);
     } catch (error) {
-        showError('Network error: ' + error.message);
+        console.error('Prediction error:', error);
+        alert('Error making prediction. Please check the console for details.');
     } finally {
         hideLoading();
     }

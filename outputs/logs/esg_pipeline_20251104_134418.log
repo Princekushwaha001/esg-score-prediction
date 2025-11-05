@@ -1,0 +1,41 @@
+2025-11-04 13:44:18,828 - ESGPipeline - INFO - Logging to: outputs/logs/esg_pipeline_20251104_134418.log
+2025-11-04 13:44:18,833 - ESGPipeline - INFO - ✓ Configuration loaded from config.yaml
+2025-11-04 13:44:18,833 - ESGPipeline - INFO - ✓ Configuration validated
+2025-11-04 13:44:18,834 - ESGPipeline - INFO - 
+============================================================
+2025-11-04 13:44:18,834 - ESGPipeline - INFO - ESG SCORE PREDICTION SYSTEM
+2025-11-04 13:44:18,834 - ESGPipeline - INFO - ============================================================
+2025-11-04 13:44:18,834 - ESGPipeline - INFO - Loading existing dataset from outputs/esg_dataset.csv
+2025-11-04 13:44:18,842 - ESGPipeline - INFO - ✓ Dataset validated: 100 samples, 6 features
+2025-11-04 13:44:18,845 - ESGPipeline - INFO - 
+============================================================
+2025-11-04 13:44:18,845 - ESGPipeline - INFO - STEP 2: Training Models
+2025-11-04 13:44:18,845 - ESGPipeline - INFO - ============================================================
+2025-11-04 13:44:18,846 - ESGPipeline - INFO - 
+Training set: 80 samples
+2025-11-04 13:44:18,847 - ESGPipeline - INFO - Test set: 20 samples
+2025-11-04 13:44:18,847 - ESGPipeline - INFO - Features: 4
+2025-11-04 13:44:18,847 - ESGPipeline - INFO - 
+[1/3] Training Linear Regression...
+2025-11-04 13:44:18,852 - ESGPipeline - INFO - ✓ Linear Regression trained successfully
+2025-11-04 13:44:18,852 - ESGPipeline - INFO - 
+[2/3] Training Random Forest...
+2025-11-04 13:44:28,470 - ESGPipeline - INFO - ✓ Random Forest trained successfully
+2025-11-04 13:44:28,471 - ESGPipeline - INFO - 
+[3/3] Training XGBoost...
+2025-11-04 13:44:28,536 - ESGPipeline - INFO - ✓ XGBoost trained successfully
+2025-11-04 13:44:28,538 - ESGPipeline - INFO - ✓ Saved linear_regression to outputs/models/linear_regression_model.pkl (0.63 KB)
+2025-11-04 13:44:28,608 - ESGPipeline - INFO - ✓ Saved random_forest to outputs/models/random_forest_model.pkl (89.00 KB)
+2025-11-04 13:44:28,615 - ESGPipeline - INFO - ✓ Saved xgboost to outputs/models/xgboost_model.pkl (215.83 KB)
+2025-11-04 13:44:28,615 - ESGPipeline - INFO - 
+============================================================
+2025-11-04 13:44:28,616 - ESGPipeline - INFO - PIPELINE COMPLETED SUCCESSFULLY
+2025-11-04 13:44:28,616 - ESGPipeline - INFO - ============================================================
+2025-11-04 13:44:28,616 - ESGPipeline - INFO - 
+✓ Dataset: outputs/esg_dataset.csv
+2025-11-04 13:44:28,616 - ESGPipeline - INFO - ✓ Models: outputs/models/
+2025-11-04 13:44:28,616 - ESGPipeline - INFO - ✓ Metrics: outputs/metrics/
+2025-11-04 13:44:28,617 - ESGPipeline - INFO - ✓ Visualizations: outputs/visualizations/
+2025-11-04 13:44:28,617 - ESGPipeline - INFO - ✓ Execution time: 9.79 seconds
+2025-11-04 13:44:28,617 - ESGPipeline - INFO - 
+

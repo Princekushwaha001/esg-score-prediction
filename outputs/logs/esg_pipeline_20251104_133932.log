@@ -1,0 +1,24 @@
+2025-11-04 13:39:32,231 - ESGPipeline - INFO - Logging to: outputs/logs/esg_pipeline_20251104_133932.log
+2025-11-04 13:39:32,235 - ESGPipeline - INFO - ✓ Configuration loaded from config.yaml
+2025-11-04 13:39:32,236 - ESGPipeline - INFO - ✓ Configuration validated
+2025-11-04 13:39:32,237 - ESGPipeline - INFO - 
+============================================================
+2025-11-04 13:39:32,237 - ESGPipeline - INFO - ESG SCORE PREDICTION SYSTEM
+2025-11-04 13:39:32,238 - ESGPipeline - INFO - ============================================================
+2025-11-04 13:39:32,238 - ESGPipeline - INFO - Loading existing dataset from outputs/esg_dataset.csv
+2025-11-04 13:39:32,248 - ESGPipeline - INFO - ✓ Dataset validated: 100 samples, 6 features
+2025-11-04 13:39:32,251 - ESGPipeline - INFO - ✓ Loaded linear_regression from outputs/models/linear_regression_model.pkl
+2025-11-04 13:39:32,318 - ESGPipeline - INFO - ✓ Loaded random_forest from outputs/models/random_forest_model.pkl
+2025-11-04 13:39:32,325 - ESGPipeline - INFO - ✓ Loaded xgboost from outputs/models/xgboost_model.pkl
+2025-11-04 13:39:32,328 - ESGPipeline - INFO - 
+============================================================
+2025-11-04 13:39:32,328 - ESGPipeline - INFO - PIPELINE COMPLETED SUCCESSFULLY
+2025-11-04 13:39:32,328 - ESGPipeline - INFO - ============================================================
+2025-11-04 13:39:32,328 - ESGPipeline - INFO - 
+✓ Dataset: outputs/esg_dataset.csv
+2025-11-04 13:39:32,328 - ESGPipeline - INFO - ✓ Models: outputs/models/
+2025-11-04 13:39:32,329 - ESGPipeline - INFO - ✓ Metrics: outputs/metrics/
+2025-11-04 13:39:32,329 - ESGPipeline - INFO - ✓ Visualizations: outputs/visualizations/
+2025-11-04 13:39:32,329 - ESGPipeline - INFO - ✓ Execution time: 0.10 seconds
+2025-11-04 13:39:32,329 - ESGPipeline - INFO - 
+

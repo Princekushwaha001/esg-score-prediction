@@ -38,8 +38,8 @@ ENV/
 .env
 
 # Outputs
-outputs/**/*
-!outputs/.gitkeep
+#outputs/**/*
+#!outputs/.gitkeep
 
 # Local development
 .DS_Store

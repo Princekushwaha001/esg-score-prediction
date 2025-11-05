@@ -1,0 +1,12 @@
+2025-11-04 13:36:07,652 - ESGPipeline - INFO - Logging to: outputs/logs/esg_pipeline_20251104_133607.log
+2025-11-04 13:36:07,662 - ESGPipeline - INFO - 
+============================================================
+2025-11-04 13:36:07,663 - ESGPipeline - INFO - ESG SCORE PREDICTION SYSTEM
+2025-11-04 13:36:07,663 - ESGPipeline - INFO - ============================================================
+2025-11-04 13:36:07,664 - ESGPipeline - INFO - Loading existing dataset from outputs/esg_dataset.csv
+2025-11-04 13:36:07,765 - ESGPipeline - INFO - 
+============================================================
+2025-11-04 13:36:07,765 - ESGPipeline - INFO - PIPELINE COMPLETED SUCCESSFULLY
+2025-11-04 13:36:07,766 - ESGPipeline - INFO - ============================================================
+2025-11-04 13:36:07,772 - ESGPipeline - INFO - 
+
